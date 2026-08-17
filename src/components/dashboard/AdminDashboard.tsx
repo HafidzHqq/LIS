@@ -69,7 +69,10 @@ export const AdminDashboard: React.FC = () => {
           </div>
 
           <h2 className="text-xl font-bold tracking-tight text-white mb-1 font-apple-display">
-            Efisiensi Lab 98.4%
+            {totalSamples > 0 
+              ? `Efisiensi Lab ${totalSamples > 0 ? ((approvedSamples / totalSamples) * 100).toFixed(1) : '0.0'}%`
+              : 'Selamat Datang di LIMY LIMS'
+            }
           </h2>
           <p className="text-xs text-[#cccccc] max-w-xs leading-relaxed mb-4">
             Monitoring instrumen, akurasi pengujian, dan kontrol kualitas mutu ISO/IEC 17025 terpadu.
@@ -101,8 +104,8 @@ export const AdminDashboard: React.FC = () => {
           subtitle="Bulan Berjalan"
           icon={TestTube2}
           iconColor="#0066cc"
-          trend="+12%"
-          trendPositive={true}
+          trend={totalSamples > 0 ? `+${totalSamples}` : undefined}
+          trendPositive={totalSamples > 0}
           onClick={() => setActiveTab('samples')}
         />
         <StatWidget
@@ -119,8 +122,8 @@ export const AdminDashboard: React.FC = () => {
           subtitle="Siap Rilis"
           icon={CheckCircle2}
           iconColor="#34c759"
-          trend="+8%"
-          trendPositive={true}
+          trend={approvedSamples > 0 ? `+${approvedSamples}` : undefined}
+          trendPositive={approvedSamples > 0}
           onClick={() => setActiveTab('reports')}
         />
         <StatWidget
