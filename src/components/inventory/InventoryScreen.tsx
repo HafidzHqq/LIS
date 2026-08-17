@@ -203,7 +203,8 @@ export const InventoryScreen: React.FC = () => {
             </Card>
           );
         })}
-      </div>
+        </div>
+      )}
 
       {/* Add Item Modal */}
       {showAddModal && (
