@@ -71,7 +71,7 @@ export const AppHeader: React.FC = () => {
             <img 
               src={currentUser.avatarUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100'} 
               alt={currentUser.name}
-              className="w-5 h-5 rounded-[4px] object-cover ring-1 ring-[#0066cc]"
+              className="w-5 h-5 rounded-full object-cover ring-1 ring-[#0066cc]"
             />
             <div className="flex items-center gap-1.5">
               {getRoleIcon()}
@@ -120,7 +120,7 @@ export const AppHeader: React.FC = () => {
             >
               <Bell className="w-4 h-4 text-[#1d1d1f]" />
               {unreadCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[#ff3b30] text-white text-[9px] font-bold rounded-[4px] flex items-center justify-center ring-2 ring-white">
+                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[#ff3b30] text-white text-[9px] font-bold rounded-full flex items-center justify-center ring-2 ring-white">
                   {unreadCount}
                 </span>
               )}
