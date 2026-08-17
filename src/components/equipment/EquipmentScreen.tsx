@@ -63,8 +63,15 @@ export const EquipmentScreen: React.FC = () => {
       </div>
 
       {/* Equipment List */}
-      <div className="space-y-3">
-        {equipment.map(item => {
+      {equipment.length === 0 ? (
+        <Card className="p-8 text-center bg-white">
+          <Sliders className="w-10 h-10 mx-auto text-[#7a7a7a] mb-2 opacity-50" />
+          <h4 className="text-sm font-bold text-[#1d1d1f]">Belum Ada Data Instrumen / Alat Lab</h4>
+          <p className="text-xs text-[#7a7a7a] mt-1">Daftar instrumen dan jadwal kalibrasi akan tercatat di sini.</p>
+        </Card>
+      ) : (
+        <div className="space-y-3">
+          {equipment.map(item => {
           const isCalibDue = item.status === 'Calibration Due' || item.daysUntilCalibration <= 7;
 
           return (
