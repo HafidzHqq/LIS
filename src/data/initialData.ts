@@ -107,18 +107,6 @@ export const INITIAL_EQUIPMENT: Equipment[] = [];
 
 export const INITIAL_QC_SAMPLES: QCSample[] = [];
 
-export const INITIAL_AUDIT_LOGS: AuditLog[] = [
-  {
-    id: 'log-init-001',
-    action: 'SYSTEM_STARTUP',
-    target: 'LIMY LIMS v2.0',
-    userName: 'Sistem LIMS',
-    role: 'SUPER_ADMIN',
-    timestamp: '2026-08-17 08:00:00 WIB',
-    details: 'Database bersih siap digunakan untuk registrasi sampel baru.',
-    ipAddress: '127.0.0.1',
-    device: 'Server LIMS'
-  }
-];
+export const INITIAL_AUDIT_LOGS: AuditLog[] = [];
 
 export const INITIAL_NOTIFICATIONS: Notification[] = [];
