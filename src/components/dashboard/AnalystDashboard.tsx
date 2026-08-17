@@ -186,7 +186,8 @@ export const AnalystDashboard: React.FC = () => {
               </Card>
             );
           })}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
