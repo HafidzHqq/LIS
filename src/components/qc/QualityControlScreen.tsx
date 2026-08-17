@@ -32,7 +32,35 @@ export const QualityControlScreen: React.FC = () => {
     setShowAddPointModal(false);
   };
 
-  if (!activeQC) return null;
+  if (!activeQC) {
+    return (
+      <div className="p-4 space-y-4 pb-24">
+        <div className="bg-[#272729] text-white rounded-[4px] p-5 shadow-apple-product relative overflow-hidden border border-[#3a3a3c]">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2">
+              <Activity className="w-5 h-5 text-[#ff9f0a]" />
+              <span className="text-xs font-semibold text-[#cccccc]">Grafik Kontrol Mutu (Levey-Jennings)</span>
+            </div>
+            <span className="text-[10px] bg-[#34c759]/20 text-[#34c759] px-2 py-0.5 rounded-[4px] font-bold border border-[#34c759]/30">
+              Sistem Mutu
+            </span>
+          </div>
+          <h2 className="text-lg font-bold text-white mb-1 font-apple-display">
+            Pemantauan Stabilitas Mutu Uji
+          </h2>
+          <p className="text-xs text-[#cccccc] mb-2 leading-relaxed">
+            Evaluasi kurva deviasi standar (Mean ± 3SD) dan Westgard multi-rules untuk instrumen lab.
+          </p>
+        </div>
+
+        <Card className="p-8 text-center bg-white">
+          <Activity className="w-10 h-10 mx-auto text-[#7a7a7a] mb-2 opacity-50" />
+          <h4 className="text-sm font-bold text-[#1d1d1f]">Belum Ada Sampel Kontrol Mutu (QC)</h4>
+          <p className="text-xs text-[#7a7a7a] mt-1">Data QC running harian akan muncul di sini setelah didaftarkan.</p>
+        </Card>
+      </div>
+    );
+  }
 
   const mean = activeQC.targetMean;
   const sd = activeQC.targetSD;
