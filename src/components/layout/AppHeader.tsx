@@ -11,9 +11,11 @@ import {
   Activity, 
   Users 
 } from 'lucide-react';
+import { Capacitor } from '@capacitor/core';
 import { NotificationDrawer } from '../notifications/NotificationDrawer';
 
 export const AppHeader: React.FC = () => {
+  const isNative = Capacitor.isNativePlatform();
   const { 
     currentUser, 
     activeTab, 
@@ -59,7 +61,9 @@ export const AppHeader: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-30 w-full bg-[#f5f5f7]/90 backdrop-blur-xl border-b border-black/[0.06] px-4 pt-2 pb-2.5 transition-all">
+      <header className={`sticky top-0 z-30 w-full bg-[#f5f5f7]/90 backdrop-blur-xl border-b border-black/[0.06] px-4 pb-2.5 transition-all ${
+        isNative ? 'pt-10' : 'pt-2'
+      }`}>
         {/* Top Mini Header: Profile Role Badge & Action Buttons */}
         <div className="flex items-center justify-between gap-2 mb-1.5">
           {/* User Profile Capsule */}
