@@ -133,7 +133,8 @@ export const EquipmentScreen: React.FC = () => {
             </Card>
           );
         })}
-      </div>
+        </div>
+      )}
 
       {/* Log Maintenance Modal */}
       {selectedEquipment && (
