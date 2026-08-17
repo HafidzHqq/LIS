@@ -195,42 +195,50 @@ export const AdminDashboard: React.FC = () => {
           </button>
         </div>
 
-        <div className="space-y-2">
-          {samples.slice(0, 4).map(sample => (
-            <Card
-              key={sample.id}
-              onClick={() => {
-                setSelectedSample(sample);
-                setActiveTab('samples');
-              }}
-              className="p-3 hover:shadow-md"
-            >
-              <div className="flex items-start justify-between gap-2 mb-1.5">
-                <div className="min-w-0">
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-[11px] font-mono font-bold text-[#0066cc]">
-                      {sample.sampleCode}
-                    </span>
-                    {sample.priority === 'STAT' && (
-                      <span className="bg-[#ff3b30] text-white text-[9px] font-bold px-1.5 py-0.2 rounded-[4px]">
-                        STAT
+        {samples.length === 0 ? (
+          <Card className="p-6 text-center bg-white">
+            <TestTube2 className="w-8 h-8 mx-auto text-[#7a7a7a] mb-2 opacity-50" />
+            <h4 className="text-xs font-bold text-[#1d1d1f]">Belum Ada Aktivitas Sampel</h4>
+            <p className="text-[11px] text-[#7a7a7a] mt-1">Daftarkan sampel baru dengan menekan tombol "+ Registrasi Sampel".</p>
+          </Card>
+        ) : (
+          <div className="space-y-2">
+            {samples.slice(0, 4).map(sample => (
+              <Card
+                key={sample.id}
+                onClick={() => {
+                  setSelectedSample(sample);
+                  setActiveTab('samples');
+                }}
+                className="p-3 hover:shadow-md"
+              >
+                <div className="flex items-start justify-between gap-2 mb-1.5">
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[11px] font-mono font-bold text-[#0066cc]">
+                        {sample.sampleCode}
                       </span>
-                    )}
+                      {sample.priority === 'STAT' && (
+                        <span className="bg-[#ff3b30] text-white text-[9px] font-bold px-1.5 py-0.2 rounded-[4px]">
+                          STAT
+                        </span>
+                      )}
+                    </div>
+                    <h4 className="text-xs font-semibold text-[#1d1d1f] truncate mt-0.5">
+                      {sample.name}
+                    </h4>
                   </div>
-                  <h4 className="text-xs font-semibold text-[#1d1d1f] truncate mt-0.5">
-                    {sample.name}
-                  </h4>
+                  {getStatusBadge(sample.status)}
                 </div>
-                {getStatusBadge(sample.status)}
-              </div>
 
-              <div className="flex items-center justify-between text-[11px] text-[#7a7a7a] pt-1 border-t border-black/[0.04]">
-                <span>{sample.clientName}</span>
-                <span>{sample.category}</span>
-              </div>
-            </Card>
-          ))}
-        </div>
+                <div className="flex items-center justify-between text-[11px] text-[#7a7a7a] pt-1 border-t border-black/[0.04]">
+                  <span>{sample.clientName}</span>
+                  <span>{sample.category}</span>
+                </div>
+              </Card>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* AI Smart Insight Capsule */}
