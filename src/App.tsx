@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useApp } from './context/AppContext';
 import { DeviceFrame } from './components/layout/DeviceFrame';
 import { AppHeader } from './components/layout/AppHeader';
 import { BottomTabBar } from './components/layout/BottomTabBar';
+import { LoginScreen } from './components/auth/LoginScreen';
+import { User } from './types';
 
 // Dashboards
 import { AdminDashboard } from './components/dashboard/AdminDashboard';
@@ -36,8 +38,27 @@ export const MainApp: React.FC = () => {
     selectedSample,
     showScanner,
     showResultEntryModal,
-    showCOAModal
+    showCOAModal,
+    switchUserByRole,
+    setCurrentUser
   } = useApp();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = (user: User) => {
+    setCurrentUser(user);
+    switchUserByRole(user.role);
+    setIsLoggedIn(true);
+  };
+
+  // Show login screen if not logged in
+  if (!isLoggedIn) {
+    return (
+      <DeviceFrame>
+        <LoginScreen onLogin={handleLogin} />
+      </DeviceFrame>
+    );
+  }
 
   const renderContent = () => {
     switch (activeTab) {
