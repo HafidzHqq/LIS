@@ -160,7 +160,8 @@ export const TestManagementScreen: React.FC = () => {
             </div>
           </Card>
         ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
