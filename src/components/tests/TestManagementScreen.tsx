@@ -73,8 +73,15 @@ export const TestManagementScreen: React.FC = () => {
       </div>
 
       {/* Test Tasks Cards */}
-      <div className="space-y-2.5">
-        {filteredTasks.map((task, index) => (
+      {filteredTasks.length === 0 ? (
+        <Card className="p-8 text-center bg-white">
+          <FlaskConical className="w-10 h-10 mx-auto text-[#7a7a7a] mb-2 opacity-50" />
+          <h4 className="text-sm font-bold text-[#1d1d1f]">Belum Ada Antrean Pengujian</h4>
+          <p className="text-xs text-[#7a7a7a] mt-1">Daftar parameter pengujian akan otomatis terisi saat sampel didaftarkan.</p>
+        </Card>
+      ) : (
+        <div className="space-y-2.5">
+          {filteredTasks.map((task, index) => (
           <Card
             key={`${task.sample.id}-${task.parameter.id}-${index}`}
             className="p-3.5 hover:shadow-md"
