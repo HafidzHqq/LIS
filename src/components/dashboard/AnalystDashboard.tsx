@@ -95,8 +95,15 @@ export const AnalystDashboard: React.FC = () => {
           </button>
         </div>
 
-        <div className="space-y-2.5">
-          {assignedSamples.map(sample => {
+        {assignedSamples.length === 0 ? (
+          <Card className="p-6 text-center bg-white">
+            <CheckCircle2 className="w-8 h-8 mx-auto text-[#34c759] mb-2 opacity-80" />
+            <h4 className="text-xs font-bold text-[#1d1d1f]">Tidak Ada Antrean Pengujian</h4>
+            <p className="text-[11px] text-[#7a7a7a] mt-1">Seluruh sampel pengujian telah diselesaikan.</p>
+          </Card>
+        ) : (
+          <div className="space-y-2.5">
+            {assignedSamples.map(sample => {
             const completedParams = sample.results.length;
             const totalParams = sample.parameters.length;
             const progressPercent = totalParams > 0 ? (completedParams / totalParams) * 100 : 0;
