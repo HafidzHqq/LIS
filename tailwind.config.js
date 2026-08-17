@@ -45,7 +45,7 @@ export default {
         '2xl': '4px',
         '3xl': '4px',
         'pill': '4px',
-        'full': '4px'
+        'full': '9999px'
       },
       boxShadow: {
         'apple-product': 'rgba(0, 0, 0, 0.22) 3px 5px 30px 0px',
