@@ -3,12 +3,13 @@ import { useApp } from '../../context/AppContext';
 import { 
   Smartphone, 
   RotateCcw, 
-  Sparkles,
-  Layers,
-  ChevronDown
+  Sparkles, 
+  Layers, 
+  ChevronDown 
 } from 'lucide-react';
 import { UserRole } from '../../types';
 import { DEMO_USERS } from '../../data/initialData';
+import { Capacitor } from '@capacitor/core';
 
 interface DeviceFrameProps {
   children: React.ReactNode;
@@ -33,6 +34,15 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({ children }) => {
 
   const [showRoleMenu, setShowRoleMenu] = useState(false);
   const [showBranchMenu, setShowBranchMenu] = useState(false);
+
+  // If running on actual native device (Capacitor), render edge-to-edge full app without mockup bezels
+  if (Capacitor.isNativePlatform()) {
+    return (
+      <div className="min-h-screen w-full bg-[#f5f5f7] text-[#1d1d1f] flex flex-col select-none antialiased">
+        {children}
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#121214] text-[#f5f5f7] flex flex-col items-center justify-start antialiased selection:bg-[#0066cc] selection:text-white">
@@ -201,17 +211,14 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({ children }) => {
                 
                 {/* iOS Status Bar with Dynamic Island */}
                 <div className="w-full h-12 bg-transparent z-40 relative px-6 flex items-center justify-between text-xs font-semibold text-[#1d1d1f] pt-1">
-                  {/* Left Time */}
                   <span className="w-12 text-left">{currentTime}</span>
 
-                  {/* Dynamic Island Capsule */}
                   <div className="h-[28px] w-[110px] bg-[#000000] rounded-full flex items-center justify-center px-2 gap-2 shadow-sm transition-all hover:w-[130px]">
                     <div className="w-2.5 h-2.5 rounded-full bg-[#0066cc] animate-pulse"></div>
                     <span className="text-[10px] font-medium text-white tracking-wider">LIMY</span>
                     <div className="w-2.5 h-2.5 rounded-full bg-[#1a1a1a] border border-[#333]"></div>
                   </div>
 
-                  {/* Right Status Icons (Signal, Wifi, Battery) */}
                   <div className="flex items-center gap-1.5 w-12 justify-end">
                     <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9zm0 15.5l-5.18-3.24C5.9 14.22 5.5 13.15 5.5 12c0-3.59 2.91-6.5 6.5-6.5s6.5 2.91 6.5 6.5c0 1.15-.4 2.22-1.32 3.26L12 18.5z"/></svg>
                     <div className="w-4 h-2.5 border border-[#1d1d1f] rounded-[2px] p-0.5 flex items-center">
@@ -243,16 +250,13 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({ children }) => {
                 
                 {/* Android Status Bar with Punch-hole Camera */}
                 <div className="w-full h-9 bg-transparent z-40 relative px-5 flex items-center justify-between text-xs font-medium text-[#1d1d1f]">
-                  {/* Left Time & Notification Dots */}
                   <div className="flex items-center gap-2">
                     <span className="font-semibold">{currentTime}</span>
                     <span className="w-1.5 h-1.5 rounded-[2px] bg-[#0066cc]"></span>
                   </div>
 
-                  {/* Android Center Camera Hole */}
                   <div className="w-3.5 h-3.5 rounded-full bg-black ring-2 ring-[#272729] shadow-inner"></div>
 
-                  {/* Right Android Icons (VoLTE, WiFi, Battery) */}
                   <div className="flex items-center gap-1.5">
                     <span className="text-[10px] font-bold">5G</span>
                     <div className="w-2.5 h-3.5 bg-[#34c759] rounded-[2px]"></div>
